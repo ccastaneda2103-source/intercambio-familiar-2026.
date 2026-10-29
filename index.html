@@ -1,217 +1,57 @@
 <!doctype html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Intercambio Familiar 2026</title>
 <style>
-:root {
-  --site-primary: #174637;
-  --site-on-primary: #fffaf0;
-  --site-secondary: #9e3038;
-  --site-on-secondary: #ffffff;
-  --site-background: #f5f0e5;
-  --site-on-background: #20352d;
-  --site-font-body: "Avenir Next", Avenir, system-ui, sans-serif;
-  --site-font-heading: Georgia, "Times New Roman", serif;
-  --site-heading-scale: 1;
-  --site-spacing-scale: 1;
-  --site-radius-scale: 1;
-  --site-decoration-opacity: 1;
-}
-* { box-sizing: border-box; }
-body { margin: 0; font-family: var(--site-font-body); color: light-dark(#20352d,#f6f0e5); background: light-dark(#f5f0e5,#14231d); }
-button, input, textarea { font: inherit; }
-button { cursor: pointer; }
-.app { min-height: 100vh; background-color: var(--site-background); color: var(--site-on-background); border-radius: 0; }
-.hero { position: relative; min-height: 330px; padding: 34px 20px 68px; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff9e9; overflow: hidden; background: linear-gradient(115deg,rgba(8,42,31,.89),rgba(105,25,34,.78)), radial-gradient(ellipse at 20% 20%,#51775a,#173f32 60%,#481b25); background-size: cover; background-position: center; }
-.hero::before { content: "✦  ❄  ✧  ❄  ✦"; position: absolute; top: 18px; left: 0; right: 0; color: #ecd18a; letter-spacing: 14px; opacity: var(--site-decoration-opacity); }
-.hero::after { content: "✧"; position: absolute; bottom: -80px; right: 6%; font-size: 230px; color: #fff; opacity: calc(.06 * var(--site-decoration-opacity)); pointer-events: none; }
-.hero-content { position: relative; z-index: 1; max-width: 760px; }
-.eyebrow { text-transform: uppercase; letter-spacing: .22em; font-size: .76rem; color: #f0d894; font-weight: 800; }
-h1 { font: 400 calc(3.2rem * var(--site-heading-scale))/1.05 var(--site-font-heading); margin: 14px 0; text-shadow: 0 3px 20px #0005; }
-.hero p { margin: 0 auto; max-width: 560px; line-height: 1.65; color: #f9efdc; }
-.photo-control { display: inline-flex; margin-top: 20px; border: 1px solid #ffffff70; background: #ffffff14; color: #fff9e9; padding: 9px 14px; border-radius: 99px; font-size: .84rem; }
-.photo-control input { display: none; }
-.wrap { width: min(980px, calc(100% - 32px)); margin: -34px auto 0; position: relative; z-index: 2; padding-bottom: 38px; }
-.tabs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 18px; }
-.tab { border: 1px solid #d8d0c0; background: #fffdf7; color: #174637; border-radius: 99px; padding: 12px 18px; font-weight: 750; box-shadow: 0 5px 20px #1d392410; }
-.tab.active { background: var(--site-primary); color: var(--site-on-primary); border-color: var(--site-primary); }
-.card { background: light-dark(#fffdf8,#202e27); color: light-dark(#20352d,#f6f0e5); border: 1px solid light-dark(#e5ddce,#3b4a40); border-radius: calc(22px * var(--site-radius-scale)); padding: calc(28px * var(--site-spacing-scale)); margin-bottom: 16px; box-shadow: 0 14px 40px #1b35290b; }
-h2 { font: 400 calc(1.9rem * var(--site-heading-scale))/1.15 var(--site-font-heading); color: light-dark(#174637,#e6d6a8); margin: 0 0 9px; }
-.sub { color: light-dark(#6b776f,#c2cbbf); margin: 0 0 22px; line-height: 1.55; }
-.grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 14px; }
-label.field { display: block; margin: 14px 0 7px; font-size: .9rem; font-weight: 750; }
-input:not([type=file]), textarea { width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid light-dark(#d7d7cb,#536258); background: light-dark(#fffefa,#17231d); color: light-dark(#20352d,#f6f0e5); outline-offset: 2px; }
-textarea { min-height: 110px; resize: vertical; }
-.btn { border: 0; border-radius: 12px; padding: 13px 18px; background: var(--site-primary); color: var(--site-on-primary); font-weight: 800; transition: transform .15s, opacity .15s; }
-.btn:hover { transform: translateY(-1px); }
-.btn.secondary { background: light-dark(#eee8dc,#37473c); color: light-dark(#174637,#f5f0e5); }
-.btn.red { background: var(--site-secondary); color: var(--site-on-secondary); }
-.btn.gold { background: #e5ca83; color: #392b12; }
-.actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
-.note { background: light-dark(#f8f0dc,#393421); border: 1px solid light-dark(#eadcb5,#645735); color: light-dark(#6b5522,#f0dfa8); border-radius: 12px; padding: 13px 15px; margin-top: 16px; font-size: .9rem; line-height: 1.5; }
-.hidden { display: none !important; }
-.statrow { display: flex; flex-wrap: wrap; gap: 12px; margin: 18px 0; }
-.stat { flex: 1; min-width: 120px; padding: 15px; border-radius: 14px; background: light-dark(#f3f0e7,#29392f); font-size: .84rem; }
-.stat strong { display: block; font-size: 1.5rem; color: light-dark(#174637,#e6d6a8); margin-bottom: 2px; }
-.person { padding: 13px 0; display: flex; gap: 12px; justify-content: space-between; align-items: center; border-bottom: 1px solid light-dark(#eee8dc,#39463d); }
-.status { display: inline-block; padding: 5px 9px; border-radius: 99px; font-size: .75rem; font-weight: 800; background: #e4efe4; color: #24563c; }
-.result { background: linear-gradient(140deg,#123c32,#1d5b48); color: #fffaf0; border-radius: 18px; padding: 25px; text-align: center; }
-.result h3 { font: 2.25rem var(--site-font-heading); color: #f1d78d; margin: 10px 0 16px; overflow-wrap: anywhere; }
-.wish { text-align: left; white-space: pre-wrap; background: #ffffff13; border: 1px solid #ffffff24; padding: 17px; border-radius: 12px; line-height: 1.6; }
-.wish strong { color: #f1d78d; }
-.footer { text-align: center; color: light-dark(#7b837c,#a5b0a7); font-size: .82rem; padding: 18px; }
-@media(max-width:600px) { h1 { font-size: 2.45rem; } .hero { min-height: 315px; } .card { padding: 20px; } .tab { padding: 10px 13px; font-size: .88rem; } }
+:root{--pine:#174c3a;--pine2:#24664c;--red:#bd2925;--gold:#bd8950;--cream:#fbf7ef;--paper:#fffdf8;--ink:#20332c;--muted:#6c746e;--line:#e9dfd0;--soft:#e8f0e5}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font:16px Inter,system-ui,-apple-system,sans-serif}button,input,textarea,select{font:inherit}button,a{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #d5ad70;outline-offset:2px}.topbar{padding:15px clamp(16px,4vw,55px);background:#fffdf9;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.brand{font:700 20px Georgia,serif;color:var(--pine)}.nav{display:flex;gap:8px;flex-wrap:wrap}.pill,.btn{border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:white;color:var(--pine);font-weight:700}.btn.primary{background:var(--red);color:white;border-color:var(--red)}.btn.green{background:var(--pine);color:white}.btn:disabled{opacity:.5;cursor:not-allowed}main{max-width:1100px;margin:auto;padding:26px 18px 55px}.view{display:none}.view.active{display:block}.hero{padding:clamp(26px,5vw,58px);border:1px solid #eee0cc;border-radius:26px;background:linear-gradient(135deg,#fffaf0,#f3e5d1);display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:24px}.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:var(--pine2);font-weight:800}h1,h2,h3{font-family:Georgia,serif;color:var(--pine);margin-top:8px}h1{font-size:clamp(36px,5vw,58px);line-height:1.05;margin-bottom:14px}.lead{line-height:1.7;color:#58645b}.gift{font-size:clamp(90px,14vw,155px);text-align:center}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.steps,.stats,.info-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}.card,.step{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px;margin-top:16px}.step p,.muted{color:var(--muted);font-size:13px;line-height:1.55}.layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px}.field{margin:14px 0}.field label{display:block;font-size:13px;font-weight:750;margin-bottom:7px}input,textarea,select{width:100%;border:1px solid #ddd4c7;border-radius:10px;padding:12px;background:white;color:var(--ink)}textarea{min-height:80px;resize:vertical}.formrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}.notice{background:#f7eddf;border:1px solid #edddc6;color:#785b32;padding:13px 15px;border-radius:12px;font-size:13px;line-height:1.5;margin-top:14px}.notice.success{background:var(--soft);color:var(--pine);border-color:#d7e5d1}.stats{grid-template-columns:repeat(3,1fr)}.stat{padding:14px;background:white;border:1px solid var(--line);border-radius:14px}.stat strong{display:block;font:25px Georgia,serif;color:var(--pine)}.stat span{font-size:12px;color:var(--muted)}.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.tabs button.active{background:var(--pine);color:white}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;font-size:13px;background:white}td,th{text-align:left;padding:11px;border-bottom:1px solid var(--line)}th{background:#fbf6ed;color:var(--muted)}.wish{padding:12px;border:1px solid var(--line);border-radius:12px;margin:8px 0;background:white}.wish h4{margin:0 0 5px;color:var(--pine)}.small{font-size:12px}.hidden{display:none!important}.result{padding:24px;border-radius:18px;background:linear-gradient(145deg,#f9f1e4,#f4e6d4);text-align:center}.result-name{font:32px Georgia,serif;color:var(--pine)}.footer{text-align:center;padding:24px;color:#8a8c80;font-size:12px}
+@media(max-width:760px){.hero,.layout{grid-template-columns:1fr}.gift{font-size:90px}.steps{grid-template-columns:repeat(2,1fr)}.info-grid{grid-template-columns:1fr}.formrow{grid-template-columns:1fr}.card{padding:17px}.topbar{align-items:flex-start}.stats{gap:7px}.stat{padding:10px}}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-<div class="app" id="app">
-<header class="hero" id="hero">
-  <div class="hero-content">
-    <div class="eyebrow">Una tradición para compartir</div>
-    <h1>Intercambio Familiar 2026</h1>
-    <p>La magia de la Navidad está en los pequeños detalles, las sorpresas y el amor de estar juntos. 🎄</p>
-    <label class="photo-control">＋ Colocar foto familiar<input id="photo" type="file" accept="image/*"></label>
-  </div>
-</header>
-<main class="wrap">
-  <nav class="tabs" aria-label="Secciones">
-    <button class="tab active" data-tab="registro">🎁 Registrarme</button>
-    <button class="tab" data-tab="asignacion">✨ Mi regalo</button>
-    <button class="tab" data-tab="admin">🔐 Organizar</button>
-  </nav>
-  <section class="card" id="registro">
-    <h2>¡Súmate al intercambio!</h2>
-    <p class="sub">Registra tus datos y comparte algunas ideas para que tu regalo sea especial.</p>
-    <form id="registerForm">
-      <div class="grid">
-        <div><label class="field" for="name">Nombre completo</label><input id="name" required maxlength="80" placeholder="Ej. Ana López"></div>
-        <div><label class="field" for="phone">WhatsApp con código de país</label><input id="phone" required inputmode="tel" placeholder="Ej. +502 5555 5555"></div>
-      </div>
-      <label class="field" for="code">Crea tu código personal</label><input id="code" required minlength="4" maxlength="32" type="password" placeholder="Mínimo 4 caracteres">
-      <label class="field" for="wish">Mi lista de deseos</label><textarea id="wish" required maxlength="1200" placeholder="Ideas de regalo, colores favoritos, hobbies, tallas..."></textarea>
-      <div class="note">🔒 Tu código personal se usa para consultar tu asignación. En la versión publicada, las credenciales se protegerán en el servidor; no reutilices contraseñas importantes.</div>
-      <div class="actions"><button class="btn" type="submit">Guardar mi registro</button></div>
-    </form>
-    <div id="regMsg" class="note hidden" role="status"></div>
-  </section>
-  <section class="card hidden" id="asignacion">
-    <h2>Tu sorpresa navideña</h2>
-    <p class="sub">Identifícate para ver únicamente a quién te toca regalar y su lista de deseos.</p>
-    <label class="field" for="lookupName">Nombre con el que te registraste</label><input id="lookupName" placeholder="Tu nombre completo">
-    <label class="field" for="lookupCode">Tu código personal</label><input id="lookupCode" type="password" placeholder="Tu código">
-    <div class="actions"><button class="btn" id="reveal">Descubrir mi asignación</button></div>
-    <div id="myResult" style="margin-top:18px"></div>
-  </section>
-  <section class="card hidden" id="admin">
-    <h2>Panel de la organizadora</h2>
-    <p class="sub">Configura el presupuesto y fecha. El sorteo se habilita cuando haya al menos dos participantes.</p>
-    <label class="field" for="adminCode">Código de organizadora (prototipo: FAMILIA2026)</label><input id="adminCode" type="password" placeholder="Código de organizadora">
-    <div class="grid">
-      <div><label class="field" for="min">Presupuesto mínimo (Q)</label><input id="min" type="number" min="0" value="100"></div>
-      <div><label class="field" for="max">Presupuesto máximo (Q)</label><input id="max" type="number" min="1" value="200"></div>
-      <div><label class="field" for="date">Fecha del intercambio</label><input id="date" type="date" value="2026-12-24"></div>
-    </div>
-    <div class="statrow"><div class="stat"><strong id="count">0</strong>Participantes</div><div class="stat"><strong id="drawStatus">Pendiente</strong>Estado del sorteo</div></div>
-    <div id="people"></div>
-    <div class="actions"><button class="btn secondary" id="saveSettings">Guardar configuración</button><button class="btn gold" id="draw">🎄 Realizar sorteo</button><button class="btn secondary" id="whatsapp">Preparar avisos de WhatsApp</button><button class="btn red" id="reset">Borrar datos de prueba</button></div>
-    <div id="adminMsg" class="note" role="status">Esta vista es una demostración local. En la versión real, el panel se protegerá del lado del servidor.</div>
-    <div class="note"><strong>Lo que requiere la versión publicada:</strong> base de datos compartida, códigos verificados en servidor, sorteo transaccional y notificaciones de WhatsApp mediante WhatsApp Business Platform o un proveedor autorizado. Los enlaces de WhatsApp se preparan para envío manual en esta demo.</div>
-  </section>
-  <div class="footer">Con cariño y espíritu navideño · Intercambio Familiar 2026</div>
+<header class="topbar"><div class="brand">🎁 Intercambio Familiar 2026</div><nav class="nav"><button class="pill" onclick="show('home')">Inicio</button><button class="pill" onclick="show('event')">Información</button><button class="pill" onclick="show('register')">Quiero participar</button><button class="pill" onclick="show('result')">Mi asignación</button><button class="pill" onclick="show('admin')">Organizar</button></nav></header>
+<main>
+<section class="view active" id="home"><div class="hero"><div><div class="eyebrow">Pequeños detalles, grandes momentos ♥</div><h1>La magia está en compartir.</h1><p class="lead">Celebremos juntos la Navidad con un intercambio lleno de cariño, sorpresas y buenos momentos en familia.</p><div class="actions"><button class="btn primary" onclick="show('register')">Quiero participar →</button><button class="btn" onclick="show('event')">Ver información</button></div></div><div class="gift">🎁</div></div><div class="steps"><div class="step"><b>1. Regístrate</b><p>Completa tus datos y wishlist.</p></div><div class="step"><b>2. Esperamos</b><p>La organizadora revisa los registros.</p></div><div class="step"><b>3. Sorteo</b><p>La organizadora revisa y publica.</p></div><div class="step"><b>4. Descubre</b><p>Usa tu enlace personal para ver a quién regalar.</p></div></div></section>
+<section class="view" id="event"><div class="card"><div class="eyebrow">Nos preparamos para compartir</div><h2>Información del intercambio</h2><p id="general-message">¡Celebremos juntos la Navidad!</p><div class="info-grid"><div class="stat"><span>📅 Fecha</span><strong id="event-date">24 dic 2026</strong></div><div class="stat"><span>🎁 Presupuesto</span><strong id="event-budget">Q200</strong></div><div class="stat"><span>👨‍👩‍👧 Participantes</span><strong id="event-count">0</strong></div></div><h3>Reglas del intercambio</h3><ul id="rules"><li>Respetar el presupuesto.</li><li>Dar un regalo a la persona asignada.</li><li>Mantener el secreto hasta el día del intercambio.</li></ul><div class="notice" id="event-status">Las inscripciones están abiertas.</div><div id="published-note" class="notice success hidden">🎉 ¡El sorteo ya está publicado! Consulta tu resultado desde tu enlace personal.</div><div class="actions"><button class="btn primary" id="register-cta" onclick="show('register')">Quiero participar</button></div></div></section>
+<section class="view" id="register"><div class="card"><div class="eyebrow">¡Qué alegría que participes!</div><h2>Únete al intercambio</h2><p class="muted">Completa tus datos y agrega al menos una idea de regalo. No necesitas un código.</p><form id="reg-form"><div class="formrow"><div class="field"><label for="full-name">Nombre completo *</label><input id="full-name" required maxlength="100" autocomplete="name"></div><div class="field"><label for="email">Correo electrónico *</label><input id="email" type="email" required autocomplete="email"></div></div><div class="field"><label for="note">Preferencias o información para el regalo (opcional)</label><textarea id="note" maxlength="1000"></textarea></div><h3>Mi wishlist</h3><div id="wish-editor"></div><button class="btn" type="button" onclick="addWishForm()">＋ Agregar idea</button><div class="actions"><button class="btn primary" type="submit">Guardar mi registro</button></div></form><div id="reg-msg" class="notice hidden"></div></div></section>
+<section class="view" id="result"><div class="card"><div class="eyebrow">Tu sorpresa navideña</div><h2>Mi asignación</h2><p class="muted">Este resultado solo está disponible mediante tu enlace personal después de la publicación.</p><div id="personal-result" class="notice">Abre el enlace personal que recibiste al registrarte en este dispositivo o pega el enlace completo en tu navegador.</div></div></section>
+<section class="view" id="admin"><div class="card" id="admin-login"><div class="eyebrow">Área privada</div><h2>Panel de organización</h2><p class="muted">Solo la cuenta autorizada de la organizadora puede entrar.</p><div class="field"><label for="admin-email">Correo de organizadora</label><input id="admin-email" type="email" autocomplete="username"></div><div class="field"><label for="admin-password">Contraseña</label><input id="admin-password" type="password" autocomplete="current-password"></div><button class="btn primary" onclick="loginAdmin()">Iniciar sesión</button><div id="login-msg" class="notice hidden"></div></div>
+<div id="admin-panel" class="hidden"><div class="card"><div class="eyebrow">Área privada</div><h2>Panel de organización</h2><div class="actions"><button class="btn" onclick="adminTab('participants')">Participantes</button><button class="btn" onclick="adminTab('wishes')">Wishlists</button><button class="btn" onclick="adminTab('draw')">Sorteo</button><button class="btn" onclick="adminTab('settings')">Ajustes</button><button class="btn" onclick="logoutAdmin()">Cerrar sesión</button></div><div id="admin-content"></div></div></div></section>
+<div class="footer">Hecho con cariño para compartir en familia · Intercambio Familiar 2026</div>
 </main>
-</div>
 <script>
-const $ = id => document.getElementById(id);
-const STORE = 'if2026_demo_v2';
-let state = { people: [], min: 100, max: 200, date: '2026-12-24', assignments: null };
-try { state = Object.assign(state, JSON.parse(localStorage.getItem(STORE) || '{}')); } catch (e) {}
-const ADMIN_CODE = 'FAMILIA2026';
-const norm = s => s.trim().toLocaleLowerCase('es');
-const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function save() { localStorage.setItem(STORE, JSON.stringify(state)); render(); }
-function tab(id) {
-  ['registro','asignacion','admin'].forEach(k => $(k).classList.toggle('hidden', k !== id));
-  document.querySelectorAll('.tab').forEach(b => b.classList.toggle('active', b.dataset.tab === id));
-  if (id === 'admin') render();
-}
-document.querySelectorAll('[data-tab]').forEach(b => b.addEventListener('click', () => tab(b.dataset.tab)));
-$('photo').addEventListener('change', e => {
-  const f = e.target.files && e.target.files[0]; if (!f) return;
-  if (!f.type.startsWith('image/')) return alert('Selecciona una imagen.');
-  const reader = new FileReader();
-  reader.onload = () => { $('hero').style.backgroundImage = `linear-gradient(115deg,rgba(8,42,31,.78),rgba(105,25,34,.65)),url("${reader.result}")`; };
-  reader.readAsDataURL(f);
-});
-$('registerForm').addEventListener('submit', e => {
-  e.preventDefault();
-  const name = $('name').value.trim(), phone = $('phone').value.trim(), code = $('code').value, wish = $('wish').value.trim();
-  if (state.people.some(p => norm(p.name) === norm(name))) { $('regMsg').textContent = 'Ese nombre ya está registrado. Contacta a la organizadora si necesitas corregirlo.'; $('regMsg').classList.remove('hidden'); return; }
-  if (code.length < 4) return;
-  state.people.push({ name, phone, code, wish }); state.assignments = null;
-  save(); $('registerForm').reset();
-  $('regMsg').textContent = '¡Registro guardado en este navegador! Recuerda que esta demostración no sincroniza con los demás dispositivos.';
-  $('regMsg').classList.remove('hidden');
-});
-function render() {
-  $('count').textContent = state.people.length;
-  $('drawStatus').textContent = state.assignments ? 'Realizado' : 'Pendiente';
-  $('min').value = state.min; $('max').value = state.max; $('date').value = state.date;
-  $('people').innerHTML = state.people.map((p,i) => `<div class="person"><div><strong>${esc(p.name)}</strong><div style="font-size:.82rem;opacity:.7">${esc(p.phone)}</div></div><span class="status">Registrado</span><button class="btn secondary" data-remove="${i}" type="button">Quitar</button></div>`).join('') || '<p class="sub">Todavía no hay participantes registrados en este navegador.</p>';
-  document.querySelectorAll('[data-remove]').forEach(b => b.onclick = () => {
-    if ($('adminCode').value !== ADMIN_CODE) { $('adminMsg').textContent = 'Ingresa el código de organizadora para administrar registros.'; return; }
-    if (confirm('¿Quitar a esta persona? Se invalidará el sorteo actual.')) { state.people.splice(Number(b.dataset.remove),1); state.assignments = null; save(); }
-  });
-}
-$('saveSettings').onclick = () => {
-  if ($('adminCode').value !== ADMIN_CODE) { $('adminMsg').textContent = 'Código de organizadora incorrecto para esta demostración.'; return; }
-  const min = Number($('min').value), max = Number($('max').value);
-  if (min < 0 || max < min) { $('adminMsg').textContent = 'Revisa el presupuesto: el máximo debe ser igual o mayor que el mínimo.'; return; }
-  state.min = min; state.max = max; state.date = $('date').value; save();
-  $('adminMsg').textContent = 'Configuración guardada localmente. En producción se guardará en la base de datos compartida.';
-};
-$('draw').onclick = () => {
-  if ($('adminCode').value !== ADMIN_CODE) { $('adminMsg').textContent = 'Código de organizadora incorrecto para esta demostración.'; return; }
-  if (state.people.length < 2) { $('adminMsg').textContent = 'Necesitas al menos dos participantes.'; return; }
-  if (state.max < state.min) { $('adminMsg').textContent = 'El rango de presupuesto no es válido.'; return; }
-  if (!confirm('¿Realizar el sorteo? Se asignará una persona distinta a cada participante.')) return;
-  const n = state.people.length, targets = Array.from({length:n},(_,i)=>i);
-  let valid = false;
-  for (let tries=0; tries<20000; tries++) {
-    for (let i=n-1;i>0;i--) { const j=Math.floor(Math.random()*(i+1)); [targets[i],targets[j]]=[targets[j],targets[i]]; }
-    if (targets.every((v,i)=>v!==i)) { valid = true; break; }
-  }
-  if (!valid) { $('adminMsg').textContent = 'No se pudo completar el sorteo. Intenta nuevamente.'; return; }
-  state.assignments = {}; state.people.forEach((p,i)=>state.assignments[norm(p.name)] = targets[i]);
-  save(); $('adminMsg').textContent = '¡Sorteo completado en este prototipo! En producción se notificará a cada participante de forma individual.';
-};
-$('reveal').onclick = () => {
-  const name = $('lookupName').value.trim(), code = $('lookupCode').value, box = $('myResult');
-  if (!state.assignments) { box.innerHTML = '<div class="note">La organizadora todavía no ha realizado el sorteo.</div>'; return; }
-  const idx = state.people.findIndex(p => norm(p.name) === norm(name));
-  if (idx < 0 || state.people[idx].code !== code) { box.innerHTML = '<div class="note">No pudimos validar el nombre y el código. Revisa tus datos.</div>'; return; }
-  const target = state.people[state.assignments[norm(name)]];
-  box.innerHTML = `<div class="result"><div>Tu misión secreta es regalarle a</div><h3>${esc(target.name)}</h3><div>Presupuesto: Q${state.min}–Q${state.max}</div><div class="wish" style="margin-top:18px"><strong>💌 Su lista de deseos</strong><br><br>${esc(target.wish).replace(/\n/g,'<br>')}</div><p style="font-size:.82rem;color:#e9f0e9">¡Shhh! Mantén tu asignación en secreto.</p></div>`;
-};
-$('whatsapp').onclick = () => {
-  if ($('adminCode').value !== ADMIN_CODE) { $('adminMsg').textContent = 'Ingresa el código de organizadora para preparar avisos.'; return; }
-  if (!state.assignments) { $('adminMsg').textContent = 'Primero realiza el sorteo.'; return; }
-  const links = state.people.map(p => {
-    const target = state.people[state.assignments[norm(p.name)]];
-    const phone = p.phone.replace(/\D/g,'');
-    const msg = `¡Hola ${p.name}! 🎄 Ya está listo el sorteo de Intercambio Familiar 2026. Tu persona asignada es: ${target.name}. Presupuesto: Q${state.min}–Q${state.max}. Ingresa al enlace del intercambio y usa tu código personal para consultar su wishlist.`;
-    return `<div class="person"><div><strong>${esc(p.name)}</strong><div style="font-size:.8rem;opacity:.7">${esc(p.phone)}</div></div><a class="btn" style="text-decoration:none" target="_blank" rel="noopener" href="https://wa.me/${phone}?text=${encodeURIComponent(msg)}">Abrir WhatsApp</a></div>`;
-  }).join('');
-  $('adminMsg').innerHTML = '<strong>Avisos preparados.</strong> Abre cada conversación para enviar manualmente. La notificación automática requiere WhatsApp Business Platform y configuración del proveedor.' + links;
-};
-$('reset').onclick = () => {
-  if ($('adminCode').value !== ADMIN_CODE) { $('adminMsg').textContent = 'Ingresa el código de organizadora para borrar los datos.'; return; }
-  if (confirm('¿Borrar los datos de prueba guardados en este navegador?')) {
-    state = {people:[],min:100,max:200,date:'2026-12-24',assignments:null}; save(); $('myResult').innerHTML=''; $('adminMsg').textContent='Datos de prueba eliminados.';
-  }
-};
-render();
+const SUPABASE_URL="SUPABASE_URL_AQUI";
+const SUPABASE_ANON_KEY="SUPABASE_ANON_KEY_AQUI";
+const configured=!SUPABASE_URL.includes("_AQUI")&&!SUPABASE_ANON_KEY.includes("_AQUI");
+const sb=configured?supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY):null;
+const $=id=>document.getElementById(id);let staged=[],session=null,adminData=null;
+function show(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));window.scrollTo({top:0,behavior:'smooth'});if(id==='event')loadInfo();if(id==='result')loadPersonal();if(id==='admin')refreshAdmin()}
+function msg(id,text,ok=false){$(id).textContent=text;$(id).classList.remove('hidden');$(id).classList.toggle('success',ok)}
+async function api(action,data={},admin=false){if(!sb)throw Error('Falta configurar Supabase en index.html. Sigue el README.');const headers={'Content-Type':'application/json'};if(admin){const {data:s}=await sb.auth.getSession();if(!s.session)throw Error('Inicia sesión como organizadora.');headers.Authorization='Bearer '+s.session.access_token}const r=await fetch(SUPABASE_URL+'/functions/v1/intercambio-api',{method:'POST',headers:{...headers,apikey:SUPABASE_ANON_KEY},body:JSON.stringify({action,...data})});const j=await r.json();if(!r.ok)throw Error(j.error||'No se pudo completar la solicitud.');return j}
+function addWishForm(item={title:'',description:'',url:''}){const id=crypto.randomUUID();staged.push({...item,_id:id});renderWishEditor()}
+function renderWishEditor(){ $('wish-editor').innerHTML=staged.map((w,i)=>`<div class="wish"><div class="field"><label>Título de la idea *</label><input data-w="${i}" data-k="title" required value="${esc(w.title)}" placeholder="Ej. Termo para café"></div><div class="field"><label>Descripción (opcional)</label><textarea data-w="${i}" data-k="description" placeholder="Color, tamaño, estilo">${esc(w.description)}</textarea></div><div class="field"><label>Enlace (opcional)</label><input data-w="${i}" data-k="url" type="url" value="${esc(w.url)}" placeholder="https://..."></div><button type="button" class="btn" onclick="removeWish(${i})">Eliminar idea</button></div>`).join('');$('wish-editor').querySelectorAll('[data-w]').forEach(el=>el.addEventListener('input',()=>{staged[Number(el.dataset.w)][el.dataset.k]=el.value}))}
+function removeWish(i){staged.splice(i,1);renderWishEditor()}
+function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+$('reg-form').addEventListener('submit',async e=>{e.preventDefault();try{const r=await api('register',{full_name:$('full-name').value.trim(),email:$('email').value.trim(),note:$('note').value.trim(),wishlist:staged});msg('reg-msg','¡Ya estás dentro! Guarda tu enlace personal: '+r.personal_url,true);$('reg-msg').insertAdjacentHTML('beforeend','<p><button class="btn green" id="copy-link">Copiar enlace personal</button></p>');$('copy-link').onclick=()=>navigator.clipboard.writeText(r.personal_url);$('reg-form').reset();staged=[];addWishForm();}catch(err){msg('reg-msg',err.message)}});
+async function loadInfo(){try{const d=await api('public_info');const s=d.settings;$('general-message').textContent=s.general_message;$('event-date').textContent=new Date(s.event_date+'T12:00:00').toLocaleDateString('es-GT',{day:'numeric',month:'long',year:'numeric'});$('event-budget').textContent=s.budget_min===s.budget_max?'Q'+s.budget_min:`Q${s.budget_min}–Q${s.budget_max}`;$('event-count').textContent=d.participant_count;$('event-status').textContent=({open:'Inscripciones abiertas.',closed:'Inscripciones cerradas. La organizadora está preparando el sorteo.',drawn:'El sorteo se realizó y está pendiente de publicación.',published:'¡El sorteo ya está publicado! Abre tu enlace personal para consultar tu asignación.'})[s.draw_status]||'Estado por confirmar';$('register-cta').classList.toggle('hidden',!s.registration_open);$('published-note').classList.toggle('hidden',s.draw_status!=='published');$('register-cta').disabled=!s.registration_open;$('rules').innerHTML=(s.rules||[]).map(x=>'<li>'+esc(x)+'</li>').join('')}catch(e){$('event-status').textContent=e.message}}
+async function loadPersonal(){const token=new URLSearchParams(location.search).get('token');if(!token){$('personal-result').textContent='No encontramos un token personal en este enlace. Usa el enlace completo que recibiste al registrarte.';return}try{const d=await api('participant',{token});if(!d.published){$('personal-result').textContent=d.message;return}const s=d.settings;$('personal-result').innerHTML=`<div class="result"><p>Tu misión secreta es regalarle a</p><div class="result-name">${esc(d.recipient.full_name)}</div><p>Presupuesto: ${s.budget_min===s.budget_max?'Q'+s.budget_min:`Q${s.budget_min}–Q${s.budget_max}`}</p></div><h3>Su wishlist</h3>`+(d.wishlist.length?d.wishlist.map(w=>`<div class="wish"><h4>${esc(w.title)}</h4><p>${esc(w.description)}</p>${w.url?`<a href="${esc(w.url)}" target="_blank" rel="noopener">Ver producto ↗</a>`:''}</div>`).join(''):'<p>No agregó ideas de regalo.</p>')}catch(e){$('personal-result').textContent=e.message}}
+async function loginAdmin(){try{if(!sb)throw Error('Falta configurar Supabase en index.html.');const {data,error}=await sb.auth.signInWithPassword({email:$('admin-email').value,password:$('admin-password').value});if(error)throw error;session=data.session;await api('admin_login_check',{},true);$('admin-login').classList.add('hidden');$('admin-panel').classList.remove('hidden');await refreshAdmin()}catch(e){msg('login-msg',e.message)}}
+async function logoutAdmin(){if(sb)await sb.auth.signOut();session=null;$('admin-panel').classList.add('hidden');$('admin-login').classList.remove('hidden')}
+async function refreshAdmin(){if(!sb)return;const {data}=await sb.auth.getSession();if(data.session){session=data.session;$('admin-login').classList.add('hidden');$('admin-panel').classList.remove('hidden');await adminTab('participants')}}
+async function adminCall(action,data={}){return api(action,data,true)}
+async function adminTab(tab){try{adminData=await adminCall('admin_data');const s=adminData.settings;const c=$('admin-content');if(tab==='participants'){c.innerHTML=`<h3>Participantes (${adminData.people.length})</h3><p class="muted">Estado: ${esc(s.draw_status)} · ${s.registration_open?'Inscripciones abiertas':'Inscripciones cerradas'}</p><button class="btn primary" onclick="adminAction('close_registration',{},'Inscripciones cerradas')">Cerrar inscripciones</button><div class="table-wrap"><table><thead><tr><th>Nombre</th><th>Correo</th><th>Ideas</th><th>Enlace personal</th></tr></thead><tbody>${adminData.people.map(p=>`<tr><td>${esc(p.full_name)}</td><td>${esc(p.email)}</td><td>${adminData.wishes.filter(w=>w.participant_id===p.id).length}</td><td><button class="btn" onclick="regen('${p.id}')">Regenerar enlace</button></td></tr>`).join('')}</tbody></table></div>`}
+if(tab==='wishes'){c.innerHTML='<h3>Wishlists</h3>'+adminData.people.map(p=>`<div class="wish"><h4>${esc(p.full_name)}</h4>${adminData.wishes.filter(w=>w.participant_id===p.id).map(w=>`<p><b>${esc(w.title)}</b> — ${esc(w.description)} ${w.url?`<a href="${esc(w.url)}" target="_blank">Enlace</a>`:''}</p>`).join('')||'<p>Sin ideas todavía.</p>'}</div>`).join('')}
+if(tab==='draw'){c.innerHTML=`<h3>Sorteo</h3><p class="notice">${esc(s.draw_status)}. Revisa las asignaciones antes de publicar.</p><div class="actions"><button class="btn primary" ${s.draw_status!=='closed'?'disabled':''} onclick="adminAction('draw',{},'Sorteo realizado')">Realizar sorteo</button><button class="btn green" ${s.draw_status!=='drawn'?'disabled':''} onclick="if(confirm('¿Publicar los resultados?'))adminAction('publish',{},'Resultados publicados')">Publicar resultados</button></div><div class="table-wrap"><table><thead><tr><th>Da regalo</th><th>Recibe regalo</th><th>Corrección</th></tr></thead><tbody>${adminData.assignments.map(a=>{const p=adminData.people.find(x=>x.id===a.giver_id),q=adminData.people.find(x=>x.id===a.recipient_id);return `<tr><td>${esc(p?.full_name)}</td><td>${esc(q?.full_name)}</td><td><button class="btn" onclick="correctPrompt('${a.giver_id}')">Corregir</button></td></tr>`}).join('')}</tbody></table></div><p class="small muted">Las correcciones requieren motivo y conservan una asignación por persona.</p>`}
+if(tab==='settings'){c.innerHTML=`<h3>Ajustes del intercambio</h3><div class="field"><label>Nombre del evento</label><input id="set-name" value="${esc(s.event_name)}"></div><div class="formrow"><div class="field"><label>Fecha</label><input id="set-date" type="date" value="${s.event_date}"></div><div class="field"><label>Presupuesto mínimo (Q)</label><input id="set-min" type="number" min="0" value="${s.budget_min}"></div></div><div class="field"><label>Presupuesto máximo (Q)</label><input id="set-max" type="number" min="0" value="${s.budget_max}"></div><div class="field"><label>Mensaje general</label><textarea id="set-message">${esc(s.general_message)}</textarea></div><button class="btn primary" onclick="saveSettings()">Guardar ajustes</button>`}
+}catch(e){$('admin-content').innerHTML='<div class="notice">'+esc(e.message)+'</div>'}}
+async function adminAction(action,data,label){try{await adminCall(action,data);alert(label);await adminTab(action==='draw'||action==='publish'?'draw':'participants');await loadInfo()}catch(e){alert(e.message)}}
+async function saveSettings(){try{await adminCall('admin_settings',{event_name:$('set-name').value,event_date:$('set-date').value,budget_min:Number($('set-min').value),budget_max:Number($('set-max').value),general_message:$('set-message').value});alert('Ajustes guardados');await loadInfo();await adminTab('settings')}catch(e){alert(e.message)}}
+async function correctPrompt(giver_id){const recipient=prompt('Ingresa el ID de la persona que recibirá el regalo (para soporte técnico).');const reason=prompt('Motivo obligatorio de la corrección:');if(!recipient||!reason)return;try{await adminCall('correct',{giver_id,recipient_id:recipient,reason});alert('Corrección registrada');await adminTab('draw')}catch(e){alert(e.message)}}
+async function regen(participant_id){if(!confirm('El enlace anterior dejará de funcionar. ¿Regenerar enlace?'))return;try{const d=await adminCall('regenerate_link',{participant_id});prompt('Copia y comparte el nuevo enlace personal:',d.personal_url)}catch(e){alert(e.message)}}
+if(!configured){document.querySelectorAll('button').forEach(b=>{if(['Quiero participar →','Ver información'].includes(b.textContent.trim()))return});}
+addWishForm();
+if(new URLSearchParams(location.search).has('token'))show('result');else loadInfo();
 </script>
-</body>
-</html>
+</body></html>
