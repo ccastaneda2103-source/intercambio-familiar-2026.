@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Intercambio Familiar 2026</title>
+<style>
+:root {
+  --site-primary: #174637;
+  --site-on-primary: #fffaf0;
+  --site-secondary: #9e3038;
+  --site-on-secondary: #ffffff;
+  --site-background: #f5f0e5;
+  --site-on-background: #20352d;
+  --site-font-body: "Avenir Next", Avenir, system-ui, sans-serif;
+  --site-font-heading: Georgia, "Times New Roman", serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--site-font-body); color: light-dark(#20352d,#f6f0e5); background: light-dark(#f5f0e5,#14231d); }
+button, input, textarea { font: inherit; }
+button { cursor: pointer; }
+.app { min-height: 100vh; background-color: var(--site-background); color: var(--site-on-background); border-radius: 0; }
+.hero { position: relative; min-height: 330px; padding: 34px 20px 68px; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff9e9; overflow: hidden; background: linear-gradient(115deg,rgba(8,42,31,.89),rgba(105,25,34,.78)), radial-gradient(ellipse at 20% 20%,#51775a,#173f32 60%,#481b25); background-size: cover; background-position: center; }
+.hero::before { content: "✦  ❄  ✧  ❄  ✦"; position: absolute; top: 18px; left: 0; right: 0; color: #ecd18a; letter-spacing: 14px; opacity: var(--site-decoration-opacity); }
+.hero::after { content: "✧"; position: absolute; bottom: -80px; right: 6%; font-size: 230px; color: #fff; opacity: calc(.06 * var(--site-decoration-opacity)); pointer-events: none; }
+.hero-content { position: relative; z-index: 1; max-width: 760px; }
+.eyebrow { text-transform: uppercase; letter-spacing: .22em; font-size: .76rem; color: #f0d894; font-weight: 800; }
+h1 { font: 400 calc(3.2rem * var(--site-heading-scale))/1.05 var(--site-font-heading); margin: 14px 0; text-shadow: 0 3px 20px #0005; }
+.hero p { margin: 0 auto; max-width: 560px; line-height: 1.65; color: #f9efdc; }
+.photo-control { display: inline-flex; margin-top: 20px; border: 1px solid #ffffff70; background: #ffffff14; color: #fff9e9; padding: 9px 14px; border-radius: 99px; font-size: .84rem; }
+.photo-control input { display: none; }
+.wrap { width: min(980px, calc(100% - 32px)); margin: -34px auto 0; position: relative; z-index: 2; padding-bottom: 38px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 18px; }
+.tab { border: 1px solid #d8d0c0; background: #fffdf7; color: #174637; border-radius: 99px; padding: 12px 18px; font-weight: 750; box-shadow: 0 5px 20px #1d392410; }
+.tab.active { background: var(--site-primary); color: var(--site-on-primary); border-color: var(--site-primary); }
+.card { background: light-dark(#fffdf8,#202e27); color: light-dark(#20352d,#f6f0e5); border: 1px solid light-dark(#e5ddce,#3b4a40); border-radius: calc(22px * var(--site-radius-scale)); padding: calc(28px * var(--site-spacing-scale)); margin-bottom: 16px; box-shadow: 0 14px 40px #1b35290b; }
+h2 { font: 400 calc(1.9rem * var(--site-heading-scale))/1.15 var(--site-font-heading); color: light-dark(#174637,#e6d6a8); margin: 0 0 9px; }
+.sub { color: light-dark(#6b776f,#c2cbbf); margin: 0 0 22px; line-height: 1.55; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 14px; }
+label.field { display: block; margin: 14px 0 7px; font-size: .9rem; font-weight: 750; }
+input:not([type=file]), textarea { width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid light-dark(#d7d7cb,#536258); background: light-dark(#fffefa,#17231d); color: light-dark(#20352d,#f6f0e5); outline-offset: 2px; }
+textarea { min-height: 110px; resize: vertical; }
+.btn { border: 0; border-radius: 12px; padding: 13px 18px; background: var(--site-primary); color: var(--site-on-primary); font-weight: 800; transition: transform .15s, opacity .15s; }
+.btn:hover { transform: translateY(-1px); }
+.btn.secondary { background: light-dark(#eee8dc,#37473c); color: light-dark(#174637,#f5f0e5); }
+.btn.red { background: var(--site-secondary); color: var(--site-on-secondary); }
+.btn.gold { background: #e5ca83; color: #392b12; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+.note { background: light-dark(#f8f0dc,#393421); border: 1px solid light-dark(#eadcb5,#645735); color: light-dark(#6b5522,#f0dfa8); border-radius: 12px; padding: 13px 15px; margin-top: 16px; font-size: .9rem; line-height: 1.5; }
+.hidden { display: none !important; }
+.statrow { display: flex; flex-wrap: wrap; gap: 12px; margin: 18px 0; }
+.stat { flex: 1; min-width: 120px; padding: 15px; border-radius: 14px; background: light-dark(#f3f0e7,#29392f); font-size: .84rem; }
+.stat strong { display: block; font-size: 1.5rem; color: light-dark(#174637,#e6d6a8); margin-bottom: 2px; }
+.person { padding: 13px 0; display: flex; gap: 12px; justify-content: space-between; align-items: center; border-bottom: 1px solid light-dark(#eee8dc,#39463d); }
+.status { display: inline-block; padding: 5px 9px; border-radius: 99px; font-size: .75rem; font-weight: 800; background: #e4efe4; color: #24563c; }
+.result { background: linear-gradient(140deg,#123c32,#1d5b48); color: #fffaf0; border-radius: 18px; padding: 25px; text-align: center; }
+.result h3 { font: 2.25rem var(--site-font-heading); color: #f1d78d; margin: 10px 0 16px; overflow-wrap: anywhere; }
+.wish { text-align: left; white-space: pre-wrap; background: #ffffff13; border: 1px solid #ffffff24; padding: 17px; border-radius: 12px; line-height: 1.6; }
+.wish strong { color: #f1d78d; }
+.footer { text-align: center; color: light-dark(#7b837c,#a5b0a7); font-size: .82rem; padding: 18px; }
+@media(max-width:600px) { h1 { font-size: 2.45rem; } .hero { min-height: 315px; } .card { padding: 20px; } .tab { padding: 10px 13px; font-size: .88rem; } }
+</style>
+</head>
+<body>
+<div class="app" id="app">
+<header class="hero" id="hero">
+  <div class="hero-content">
+    <div class="eyebrow">Una tradición para compartir</div>
+    <h1>Intercambio Familiar 2026</h1>
+    <p>La magia de la Navidad está en los pequeños detalles, las sorpresas y el amor de estar juntos. 🎄</p>
+    <label class="photo-control">＋ Colocar foto familiar<input id="photo" type="file" accept="image/*"></label>
+  </div>
+</header>
+<main class="wrap">
+  <nav class="tabs" aria-label="Secciones">
+    <button class="tab active" data-tab="registro">🎁 Registrarme</button>
+    <button class="tab" data-tab="asignacion">✨ Mi regalo</button>
+    <button class="tab" data-tab="admin">🔐 Organizar</button>
+  </nav>
+  <section class="card" id="registro">
+    <h2>¡Súmate al intercambio!</h2>
+    <p class="sub">Registra tus datos y comparte algunas ideas para que tu regalo sea especial.</p>
+    <form id="registerForm">
+      <div class="grid">
+        <div><label class="field" for="name">Nombre completo</label><input id="name" required maxlength="80" placeholder="Ej. Ana López"></div>
+        <div><label class="field" for="phone">WhatsApp con código de país</label><input id="phone" required inputmode="tel" placeholder="Ej. +502 5555 5555"></div>
+      </div>
+      <label class="field" for="code">Crea tu código personal</label><input id="code" required minlength="4" maxlength="32" type="password" placeholder="Mínimo 4 caracteres">
+      <label class="field" for="wish">Mi lista de deseos</label><textarea id="wish" required maxlength="1200" placeholder="Ideas de regalo, colores favoritos, hobbies, tallas..."></textarea>
+      <div class="note">🔒 Tu código personal se usa para consultar tu asignación. En la versión publicada, las credenciales se protegerán en el servidor; no reutilices contraseñas importantes.</div>
+      <div class="actions"><button class="btn" type="submit">Guardar mi registro</button></div>
+    </form>
+    <div id="regMsg" class="note hidden" role="status"></div>
+  </section>
+  <section class="card hidden" id="asignacion">
+    <h2>Tu sorpresa navideña</h2>
+    <p class="sub">Identifícate para ver únicamente a quién te toca regalar y su lista de deseos.</p>
+    <label class="field" for="lookupName">Nombre con el que te registraste</label><input id="lookupName" placeholder="Tu nombre completo">
+    <label class="field" for="lookupCode">Tu código personal</label><input id="lookupCode" type="password" placeholder="Tu código">
+    <div class="actions"><button class="btn" id="reveal">Descubrir mi asignación</button></div>
+    <div id="myResult" style="margin-top:18px"></div>
+  </section>
+  <section class="card hidden" id="admin">
+    <h2>Panel de la organizadora</h2>
+    <p class="sub">Configura el presupuesto y fecha. El sorteo se habilita cuando haya al menos dos participantes.</p>
+    <label class="field" for="adminCode">Código de organizadora (prototipo: FAMILIA2026)</label><input id="adminCode" type="password" placeholder="Código de organizadora">
+    <div class="grid">
+      <div><label class="field" for="min">Presupuesto mínimo (Q)</label><input id="min" type="number" min="0" value="100"></div>
+      <div><label class="field" for="max">Presupuesto máximo (Q)</label><input id="max" type="number" min="1" value="200"></div>
+      <div><label class="field" for="date">Fecha del intercambio</label><input id="date" type="date" value="2026-12-24"></div>
+    </div>
+    <div class="statrow"><div class="stat"><strong id="count">0</strong>Participantes</div><div class="stat"><strong id="drawStatus">Pendiente</strong>Estado del sorteo</div></div>
+    <div id="people"></div>
+    <div class="actions"><button class="btn secondary" id="saveSettings">Guardar configuración</button><button class="btn gold" id="draw">🎄 Realizar sorteo</button><button class="btn secondary" id="whatsapp">Preparar avisos de WhatsApp</button><button class="btn red" id="reset">Borrar datos de prueba</button></div>
+    <div id="adminMsg" class="note" role="status">Esta vista es una demostración local. En la versión real, el panel se protegerá del lado del servidor.</div>
+    <div class="note"><strong>Lo que requiere la versión publicada:</strong> base de datos compartida, códigos verificados en servidor, sorteo transaccional y notificaciones de WhatsApp mediante WhatsApp Business Platform o un proveedor autorizado. Los enlaces de WhatsApp se preparan para envío manual en esta demo.</div>
+  </section>
+  <div class="footer">Con cariño y espíritu navideño · Intercambio Familiar 2026</div>
+</main>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const STORE = 'if2026_demo_v2';
+let state = { people: [], min: 100, max: 200, date: '2026-12-24', assignments: null };
+try { state = Object.assign(state, JSON.parse(localStorage.getItem(STORE) || '{}')); } catch (e) {}
+const ADMIN_CODE = 'FAMILIA2026';
+const norm = s => s.trim().toLocaleLowerCase('es');
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function save() { localStorage.setItem(STORE, JSON.stringify(state)); render(); }
+function tab(id) {
+  ['registro','asignacion','admin'].forEach(k => $(k).classList.toggle('hidden', k !== id));
+  document.querySelectorAll('.tab').forEach(b => b.classList.toggle('active', b.dataset.tab === id));
+  if (id === 'admin') render();
+}
+document.querySelectorAll('[data-tab]').forEach(b => b.addEventListener('click', () => tab(b.dataset.tab)));
+$('photo').addEventListener('change', e => {
+  const f = e.target.files && e.target.files[0]; if (!f) return;
+  if (!f.type.startsWith('image/')) return alert('Selecciona una imagen.');
+  const reader = new FileReader();
+  reader.onload = () => { $('hero').style.backgroundImage = `linear-gradient(115deg,rgba(8,42,31,.78),rgba(105,25,34,.65)),url("${reader.result}")`; };
+  reader.readAsDataURL(f);
+});
+$('registerForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const name = $('name').value.trim(), phone = $('phone').value.trim(), code = $('code').value, wish = $('wish').value.trim();
+  if (state.people.some(p => norm(p.name) === norm(name))) { $('regMsg').textContent = 'Ese nombre ya está registrado. Contacta a la organizadora si necesitas corregirlo.'; $('regMsg').classList.remove('hidden'); return; }
+  if (code.length < 4) return;
+  state.people.push({ name, phone, code, wish }); state.assignments = null;
+  save(); $('registerForm').reset();
+  $('regMsg').textContent = '¡Registro guardado en este navegador! Recuerda que esta demostración no sincroniza con los demás dispositivos.';
+  $('regMsg').classList.remove('hidden');
+});
+function render() {
+  $('count').textContent = state.people.length;
+  $('drawStatus').textContent = state.assignments ? 'Realizado' : 'Pendiente';
+  $('min').value = state.min; $('max').value = state.max; $('date').value = state.date;
+  $('people').innerHTML = state.people.map((p,i) => `<div class="person"><div><strong>${esc(p.name)}</strong><div style="font-size:.82rem;opacity:.7">${esc(p.phone)}</div></div><span class="status">Registrado</span><button class="btn secondary" data-remove="${i}" type="button">Quitar</button></div>`).join('') || '<p class="sub">Todavía no hay participantes registrados en este navegador.</p>';
+  document.querySelectorAll('[data-remove]').forEach(b => b.onclick = () => {
+    if ($('adminCode').value !== ADMIN_CODE) { $('adminMsg').textContent = 'Ingresa el código de organizadora para administrar registros.'; return; }
+    if (confirm('¿Quitar a esta persona? Se invalidará el sorteo actual.')) { state.people.splice(Number(b.dataset.remove),1); state.assignments = null; save(); }
+  });
+}
+$('saveSettings').onclick = () => {
+  if ($('adminCode').value !== ADMIN_CODE) { $('adminMsg').textContent = 'Código de organizadora incorrecto para esta demostración.'; return; }
+  const min = Number($('min').value), max = Number($('max').value);
+  if (min < 0 || max < min) { $('adminMsg').textContent = 'Revisa el presupuesto: el máximo debe ser igual o mayor que el mínimo.'; return; }
+  state.min = min; state.max = max; state.date = $('date').value; save();
+  $('adminMsg').textContent = 'Configuración guardada localmente. En producción se guardará en la base de datos compartida.';
+};
+$('draw').onclick = () => {
+  if ($('adminCode').value !== ADMIN_CODE) { $('adminMsg').textContent = 'Código de organizadora incorrecto para esta demostración.'; return; }
+  if (state.people.length < 2) { $('adminMsg').textContent = 'Necesitas al menos dos participantes.'; return; }
+  if (state.max < state.min) { $('adminMsg').textContent = 'El rango de presupuesto no es válido.'; return; }
+  if (!confirm('¿Realizar el sorteo? Se asignará una persona distinta a cada participante.')) return;
+  const n = state.people.length, targets = Array.from({length:n},(_,i)=>i);
+  let valid = false;
+  for (let tries=0; tries<20000; tries++) {
+    for (let i=n-1;i>0;i--) { const j=Math.floor(Math.random()*(i+1)); [targets[i],targets[j]]=[targets[j],targets[i]]; }
+    if (targets.every((v,i)=>v!==i)) { valid = true; break; }
+  }
+  if (!valid) { $('adminMsg').textContent = 'No se pudo completar el sorteo. Intenta nuevamente.'; return; }
+  state.assignments = {}; state.people.forEach((p,i)=>state.assignments[norm(p.name)] = targets[i]);
+  save(); $('adminMsg').textContent = '¡Sorteo completado en este prototipo! En producción se notificará a cada participante de forma individual.';
+};
+$('reveal').onclick = () => {
+  const name = $('lookupName').value.trim(), code = $('lookupCode').value, box = $('myResult');
+  if (!state.assignments) { box.innerHTML = '<div class="note">La organizadora todavía no ha realizado el sorteo.</div>'; return; }
+  const idx = state.people.findIndex(p => norm(p.name) === norm(name));
+  if (idx < 0 || state.people[idx].code !== code) { box.innerHTML = '<div class="note">No pudimos validar el nombre y el código. Revisa tus datos.</div>'; return; }
+  const target = state.people[state.assignments[norm(name)]];
+  box.innerHTML = `<div class="result"><div>Tu misión secreta es regalarle a</div><h3>${esc(target.name)}</h3><div>Presupuesto: Q${state.min}–Q${state.max}</div><div class="wish" style="margin-top:18px"><strong>💌 Su lista de deseos</strong><br><br>${esc(target.wish).replace(/\n/g,'<br>')}</div><p style="font-size:.82rem;color:#e9f0e9">¡Shhh! Mantén tu asignación en secreto.</p></div>`;
+};
+$('whatsapp').onclick = () => {
+  if ($('adminCode').value !== ADMIN_CODE) { $('adminMsg').textContent = 'Ingresa el código de organizadora para preparar avisos.'; return; }
+  if (!state.assignments) { $('adminMsg').textContent = 'Primero realiza el sorteo.'; return; }
+  const links = state.people.map(p => {
+    const target = state.people[state.assignments[norm(p.name)]];
+    const phone = p.phone.replace(/\D/g,'');
+    const msg = `¡Hola ${p.name}! 🎄 Ya está listo el sorteo de Intercambio Familiar 2026. Tu persona asignada es: ${target.name}. Presupuesto: Q${state.min}–Q${state.max}. Ingresa al enlace del intercambio y usa tu código personal para consultar su wishlist.`;
+    return `<div class="person"><div><strong>${esc(p.name)}</strong><div style="font-size:.8rem;opacity:.7">${esc(p.phone)}</div></div><a class="btn" style="text-decoration:none" target="_blank" rel="noopener" href="https://wa.me/${phone}?text=${encodeURIComponent(msg)}">Abrir WhatsApp</a></div>`;
+  }).join('');
+  $('adminMsg').innerHTML = '<strong>Avisos preparados.</strong> Abre cada conversación para enviar manualmente. La notificación automática requiere WhatsApp Business Platform y configuración del proveedor.' + links;
+};
+$('reset').onclick = () => {
+  if ($('adminCode').value !== ADMIN_CODE) { $('adminMsg').textContent = 'Ingresa el código de organizadora para borrar los datos.'; return; }
+  if (confirm('¿Borrar los datos de prueba guardados en este navegador?')) {
+    state = {people:[],min:100,max:200,date:'2026-12-24',assignments:null}; save(); $('myResult').innerHTML=''; $('adminMsg').textContent='Datos de prueba eliminados.';
+  }
+};
+render();
+</script>
+</body>
+</html>
